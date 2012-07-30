@@ -1,8 +1,9 @@
 def time_method(method, *args)
   beginning_time = Time.now
-  self.send(method, args[0])
+  ret = self.send(method, args[0])
   end_time = Time.now
   puts "Time elapsed #{(end_time - beginning_time)*1000} milliseconds"
+  return ret
 end
 
 learningPath = '~\Ruby\learning\\'
@@ -10,8 +11,13 @@ require learningPath + 'Euler1.rb'
 require learningPath + 'Euler2.rb'
 require learningPath + 'Euler3.rb'
 require learningPath + 'Euler4.rb'
+require learningPath + 'Euler5.rb'
 if __FILE__ == $0
-  time_method(:Problem4, 3)
+  if time_method(:Problem5, 20) == 2520
+    puts "Test Passes!"
+  else
+    puts "Test Failed"
+  end
 end
 
 
