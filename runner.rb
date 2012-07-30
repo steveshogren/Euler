@@ -12,8 +12,9 @@ require learningPath + 'Euler2.rb'
 require learningPath + 'Euler3.rb'
 require learningPath + 'Euler4.rb'
 require learningPath + 'Euler5.rb'
+require learningPath + 'Euler6.rb'
 if __FILE__ == $0
-  if time_method(:Problem5, 20) == 2520
+  if time_method(:Problem6, 100) == 2640
     puts "Test Passes!"
   else
     puts "Test Failed"
