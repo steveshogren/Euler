@@ -7,7 +7,7 @@ def time_method(method, *args)
 end
 
 learningPath = '~\Ruby\learning\\'
-currentProblem = 8
+currentProblem = 9
 for i in 1...currentProblem+1 do
   require "~\\Ruby\\learning\\Euler#{i}.rb"
 end
