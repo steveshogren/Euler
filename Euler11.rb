@@ -1,3 +1,21 @@
+
+# dx, dy == either 1, -1, 0 
+def fun(x, y, dx, dy, height, width, a) 
+  greatest = 0
+  while x+(dx * 3) < height do
+    while y + (dy * 3) < width do
+      quo = a[x][y] * a[x+dx][y+dy] * a[x+(dx *2)][y + (dy*2)] * a[x+(dx*3)][y+(dy*3)]
+      if quo > greatest 
+        greatest = quo
+      end
+      y += 1
+    end
+    y = 0
+    x += 1
+  end
+  return greatest
+end
+
 def problem11 (a) 
   a = Array.new
   a[0] = [ 8,  2, 22, 97, 38, 15,  0, 40,  0, 75,  4,  5,  7, 78, 52, 12, 50, 77, 91,  8]
@@ -26,16 +44,9 @@ def problem11 (a)
   height = a.length
   #diag down right
   x = y = 0
-  while x+3 < width do
-    while y+3 < height do
-      quo = a[x][y] * a[x+1][y+1] * a[x+2][y+2] * a[x+3][y+3]
-      if quo > greatest 
-        greatest = quo
-      end
-      y += 1
-    end
-    y = 0
-    x += 1
+  quo = fun(x, y, 1, 1, height, width, a)
+  if quo > greatest 
+    greatest = quo
   end
   # diag down left
   x = 0
@@ -53,29 +64,16 @@ def problem11 (a)
   end
   x = 0
   y = 0
-  while x < height do
-    while y+3 < width do
-      quo = a[x][y] * a[x][y+1] * a[x][y+2] * a[x][y+3]
-      if quo > greatest 
-        greatest = quo
-      end
-      y += 1
-    end
-    y = 0
-    x += 1
+  quo = fun(x, y, 0, 1, height, width, a)
+  if quo > greatest 
+    greatest = quo
   end
   x = 0
   y = 0
-  while x+3 < height do
-    while y < width do
-      quo = a[x][y] * a[x+1][y] * a[x+2][y] * a[x+3][y]
-      if quo > greatest 
-        greatest = quo
-      end
-      y += 1
-    end
-    y = 0
-    x += 1
+  quo = fun(x, y, 1, 0, height, width, a)
+  if quo > greatest 
+    greatest = quo
   end
   puts greatest
 end
+
