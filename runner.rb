@@ -7,14 +7,14 @@ def time_method(method, *args)
 end
 
 learningPath = '~\Ruby\learning\\'
-currentProblem = 12
+currentProblem = 14
 for i in 1...currentProblem+1 do
   require "~\\Ruby\\learning\\Euler#{i}.rb"
 end
 
 if __FILE__ == $0
-  res  = time_method("problem#{currentProblem}", 10)
-  if res > 500 
+  res  = time_method("problem#{currentProblem}", 13)
+  if res == 10 
     puts "Test Passes! #{res}"
   else
     puts "Test Failed #{res}"

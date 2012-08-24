@@ -103,4 +103,4 @@ y =0
   x.each{|num| y += num}
   puts y
 end
-problem13()
+#problem13()
