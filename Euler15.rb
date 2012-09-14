@@ -1,7 +1,9 @@
 # -*- coding: iso-8859-1 -*-
 #Starting in the top left corner of a 2×2 grid, there are 6 routes (without backtracking) to the bottom right corner.
-#How many routes are there through a 20×20 grid?
+#How many routes are there through a 20×20 grid?'
+
 def problem15(num)
+  num = 12 
   x = Array.new(num+1)
   for i in 0.. num do
     y = Array.new(num+1)
@@ -11,57 +13,44 @@ def problem15(num)
     x[i] = y
   end
   puts "array made..."
-
   root = maket(x, 0, 0, num, Hash.new)
   puts "tree made..."
+  return result = countArray(x);
   
-  q = Queue.new
-  q.enq(root)
-  count = 0
-  mark = Array.new
-  mark.push(root.value)
-  while !q.empty? do
-    r = q.deq
-    if !r.left_tree.nil? && r.left_tree.value == "#{num},#{num}" || !r.right_tree.nil? && r.right_tree.value == "#{num},#{num}"  
-      # found another path to the end node (which is duplicated)
+  visited = Array.new
+  result = dfs(root, visited, "#{num},#{num}", 0)
+  puts "final"
+  puts result
+  return result
+end
+
+def countArray(x)
+  
+end
+
+def dfs(root, visited, endval, count) 
+  nodes = [root.right_tree, root.left_tree]
+  for n in nodes
+    if !n || visited.include?(n)
+      next
+    end
+    if n.value == endval
       count += 1
     end
-    if !r.left_tree.nil? && mark.index(r.left_tree.value) == nil 
-      mark.push(r.left_tree.value)
-      q.enq(r.left_tree)
+  end
+  for n in nodes
+    if !n || visited.include?(n) || n.value == endval
+      next
     end
-    if !r.right_tree.nil? && mark.index(r.right_tree.value) == nil 
-      mark.push(r.right_tree.value)
-      q.enq(r.right_tree)
-    end
+    visited.push(n)
+    count = dfs(n, visited, endval, count)
+    visited.pop()
+  end
+  if count % 10000 == 0
+    puts count
   end
   return count
 end
-def breadthFirst() {
-LinkedList<String> nodes = graph.adjacentNodes(visited.getLast());
-// examine adjacent nodes
-for (String node : nodes) {
-    if (visited.contains(node)) {
-        continue;
-    }
-    if (node.equals(END)) {
-        visited.add(node);
-        printPath(visited);
-        visited.removeLast();
-        break;
-    }
-}
-// in breadth-first, recursion needs to come after visiting adjacent nodes
-for (String node : nodes) {
-    if (visited.contains(node) || node.equals(END)) {
-        continue;
-    }
-    visited.addLast(node);
-    breadthFirst(graph, visited);
-    visited.removeLast();
-}
-}
-
 
 def maket(x, i, j, size, h)
   v = x[i][j]
@@ -101,3 +90,4 @@ class Tree
     Tree.new(value, left_tree, right_tree)
   end 
 end
+problem15(12)
