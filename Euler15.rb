@@ -13,9 +13,9 @@ def problem15(num)
     x[i] = y
   end
   puts "array made..."
+  return result = countArray(x);
   root = maket(x, 0, 0, num, Hash.new)
   puts "tree made..."
-  return result = countArray(x);
   
   visited = Array.new
   result = dfs(root, visited, "#{num},#{num}", 0)
@@ -24,10 +24,29 @@ def problem15(num)
   return result
 end
 
-def countArray(x)
-  
-end
+def count_paths(graph, start, end):
+    """Count the number of unique paths through an acyclic graph
 
+In order to calculate this, we look at all edges in the
+graph. Whenever we hit a branch condition (where there is more
+than one edge going from some node), we record that branch.
+When we are done, the number of paths through the graph is equal
+to the sum of these branch conditions
+
+"""
+    nodes_seen = set([])
+    branch_nodes = {}
+    for start_node, end_node in graph.edges():
+        if start_node in nodes_seen:
+            if start_node in branch_nodes:
+                branch_nodes[start_node] += 1
+            else:
+                branch_nodes[start_node] = 2
+        else:
+            nodes_seen.add(start_node)
+
+    return sum(branch_nodes.values())
+end
 def dfs(root, visited, endval, count) 
   nodes = [root.right_tree, root.left_tree]
   for n in nodes
