@@ -1,5 +1,6 @@
 currentProblem = ARGV[0].to_i
-fileName = "~\\Ruby\\learning\\Euler#{currentProblem}.rb"
+# fileName = "~\\Ruby\\learning\\Euler#{currentProblem}.rb"
+fileName = "Euler#{currentProblem}.rb"
 require fileName
 
 def time_method(method)
